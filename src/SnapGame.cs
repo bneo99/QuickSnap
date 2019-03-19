@@ -13,6 +13,11 @@ namespace CardGames
             SwinGame.LoadFontNamed("GameFont", "Chunkfive.otf", 24);
             cards = SwinGame.LoadBitmapNamed ("Cards", "Cards.png");
             SwinGame.BitmapSetCellDetails (cards, 82, 110, 13, 5, 53);      // set the cells in the bitmap to match the cards
+
+            //load sfx
+            SwinGame.LoadSoundEffectNamed("poi", "Resources/sounds/poi.wav");
+            SwinGame.LoadSoundEffectNamed("yo", "Resources/sounds/yo.wav");
+            SwinGame.LoadSoundEffectNamed("nani", "Resources/sounds/nani.wav");
         }
 
 		/// <summary>
@@ -30,15 +35,18 @@ namespace CardGames
 			}
 
 			if (myGame.IsStarted) {
-				if (SwinGame.KeyTyped (KeyCode.vk_LSHIFT) && SwinGame.KeyTyped (KeyCode.vk_LSHIFT)) {
-					//add sound effects
+				if (SwinGame.KeyTyped (KeyCode.vk_LSHIFT) && SwinGame.KeyTyped (KeyCode.vk_RSHIFT)) {
+                    //add sound effects
+                    SwinGame.PlaySoundEffect("nani");
 				}
 				else if (SwinGame.KeyTyped (KeyCode.vk_LSHIFT)) {
 					myGame.PlayerHit (0);
-				}
+                    SwinGame.PlaySoundEffect("yo");
+                }
 				else if (SwinGame.KeyTyped (KeyCode.vk_RSHIFT)) {
 					myGame.PlayerHit (1);
-				}
+                    SwinGame.PlaySoundEffect("poi");
+                }
 			}
 
 		}
